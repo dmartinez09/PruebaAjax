@@ -1,0 +1,3 @@
+$("#modal_enterprise_<%= @enterprise.id %>").modal('hide');
+$("#enterprise_<%= @enterprise.id %>").empty();
+$("tbody").prepend("<%= j render 'enterprise', enterprise: @enterprise %>");

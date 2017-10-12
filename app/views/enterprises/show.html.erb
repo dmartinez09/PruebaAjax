@@ -1,0 +1,51 @@
+<p>
+  <strong>Name:</strong>
+  <%= @enterprise.name %>
+</p>
+
+<%= form_for([@enterprise,@complaint], remote: true) do |f| %>
+	<%= f.label :content, "quejas" %> <br>
+	<%= f.text_area :content %> <br>
+	<%= f.submit "Ingrese Nuevo Reclamo" %>
+<% end %>
+<br>
+<h2>Reclamos Recientes</h2>
+<input name="buscador">
+
+<%= render 'complaints', complaint: @complaint %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Contenido</th>
+      <th>Usuario</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @complaints.each do |complaint| %>
+      <%= render 'complaints', complaint: complaint %>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    $("[name='buscador']").on("input", function(){
+      // console.log($(this).val());
+        var filter = $(this).val();
+        $.ajax({
+          url: '<%= enterprises_path %>',
+          type: 'GET',
+          dataType: 'script',
+          data: {filter: filter},
+        })
+      });
+    });
+
+</script>
+
+
+<%= link_to 'Edit', edit_enterprise_path(@enterprise) %> |
+<%= link_to 'Back', enterprises_path %>
+

@@ -1,0 +1,21 @@
+<nav class="navbar navbar-default">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="<%= root_path %>">Lista de Reclamos</a>
+  </div>
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+    <% if user_signed_in? %>
+      <li><a href="#%>">Mis Reclamos</a></li>
+      <li><a href="#">Todos los reclamos</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      
+        <li><a href="#">Hello <%= current_user.email%></a></li>
+        <li><a href="<%= destroy_user_session_path %>" data-method='delete'>Log out</a></li>
+      <% else %>
+        <li><a href="<%= new_user_session_path %>">Log in</a></li>
+        <li><a href="<%= new_user_registration_path %>">Sign up</a></li>
+      <% end %>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
